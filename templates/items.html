@@ -32,9 +32,22 @@
     <section class="items-section">
         <h2 class="section-title">Подборка сегодня</h2>
 
+        <!-- Панель категорий -->
+        <div class="category-bar">
+            <button class="category-btn category-btn--active" data-category="all">Все</button>
+            <button class="category-btn" data-category="tops">Верх</button>
+            <button class="category-btn" data-category="bottoms">Низ</button>
+            <button class="category-btn" data-category="footwear">Обувь</button>
+            <button class="category-btn" data-category="accessories">Аксессуары</button>
+            <button class="category-btn" data-category="leha">Лёха</button>
+        </div>
+
         <div class="items-grid">
             {% for vacancy in vacancies %}
-                <div class="item-card">
+                <div
+                    class="item-card"
+                    data-category="{{ vacancy.category }}"
+                >
                     <div class="item-image-wrapper">
                         <img src="{{ url_for('static', path='items/' ~ vacancy.image) }}"
                              alt="{{ vacancy.title }}"
@@ -76,7 +89,7 @@
     </p>
 </footer>
 
-<!-- ОДНО общее модальное окно для "Подробнее" и "Предзаказ" -->
+<!-- Общее модальное окно для "Подробнее" и "Предзаказ" -->
 <div id="item-modal" class="modal">
     <div class="modal-content">
         <button class="modal-close" id="modal-close">&times;</button>

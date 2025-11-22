@@ -373,3 +373,42 @@ footer {
         align-items: stretch;
     }
 }
+/* ===== Категории ===== */
+
+.category-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 18px;
+}
+
+.category-btn {
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(148, 163, 184, 0.8);
+    background: #f9fafb;
+    font-size: 13px;
+    color: #4b5563;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
+}
+
+.category-btn:hover {
+    background: #e5e7eb;
+    transform: translateY(-1px);
+}
+
+.category-btn--active {
+    background: #111827;
+    color: #f9fafb;
+    border-color: #111827;
+}
+/* Специальный стиль для категории "Лёха" */
+.item-card[data-category="leha"] .item-image-wrapper {
+    height: 320px; /* уменьшили высоту */
+}
+
+.item-card[data-category="leha"] .item-image {
+    object-fit: contain; /* полностью помещается */
+    background: #f7f7f7; /* мягкий фон */
+}

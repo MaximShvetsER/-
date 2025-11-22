@@ -12,7 +12,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalPrice = document.getElementById('modal-price');
     const modalClose = document.getElementById('modal-close');
 
-    // Описания вещей для режима "Подробнее"
+    const categoryButtons = document.querySelectorAll('.category-btn');
+    const cards = document.querySelectorAll('.item-card');
+
+    // Описания вещей для "Подробнее"
     const descriptions = {
         "Кастомные джинсы": "Ручной кастом, каждая пара уникальна. Плотный деним, аккуратный клеш и эффект краски — словно только из арт-студии.",
         "Пуховик Moncler": "Фирменный пуховик для холодной зимы: лёгкий, очень тёплый и с узнаваемым силуэтом. Идеален под городскую зиму.",
@@ -51,7 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
         modalTitle.textContent = `Предзаказ: ${title}`;
         modalPrice.textContent = price;
 
-        // Текст, который ты просил: придуманный текст + фраза в конце
         modalDesc.textContent =
             `Вы хотите оформить предзаказ на «${title}». ` +
             `Мы проверим наличие вещи, уточним размер, город и удобный способ передачи, ` +
@@ -61,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
         openModal();
     }
 
-    // Слушатели кнопок
+    // Слушатели кнопок "Подробнее"
     detailButtons.forEach(button => {
         button.addEventListener('click', () => {
             const title = button.dataset.itemTitle;
@@ -70,6 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Слушатели кнопок "Предзаказ"
     preorderButtons.forEach(button => {
         button.addEventListener('click', () => {
             const title = button.dataset.itemTitle;
@@ -91,5 +94,26 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'Escape') {
             closeModal();
         }
+    });
+
+    // ===== Фильтр по категориям =====
+    categoryButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const selected = btn.dataset.category;
+
+            // активная кнопка
+            categoryButtons.forEach(b => b.classList.remove('category-btn--active'));
+            btn.classList.add('category-btn--active');
+
+            // фильтрация карточек
+            cards.forEach(card => {
+                const cardCat = card.dataset.category;
+                if (selected === 'all' || cardCat === selected) {
+                    card.style.display = "";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        });
     });
 });
