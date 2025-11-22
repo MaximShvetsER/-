@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casta.shop — ресел вещей</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/style.css') }}">
+</head>
+<body>
+
+<header class="header">
+    <div class="header-inner">
+        <div class="logo">Casta<span>.shop</span></div>
+        <nav class="nav">
+            <a href="#">Новинки</a>
+            <a href="#">Зимний дроп</a>
+            <a href="#">Контакты</a>
+        </nav>
+    </div>
+    <div class="hero">
+        <h1>Подборка редких вещей с перепродажи</h1>
+        <p>Оригинальные вещи, лимитки и кастомы. Всё в одном месте.</p>
+    </div>
+</header>
+
+<main>
+    <section class="items-section">
+        <h2 class="section-title">Подборка сегодня</h2>
+
+        <div class="items-grid">
+            {% for vacancy in vacancies %}
+                <div class="item-card">
+                    <div class="item-image-wrapper">
+                        <img src="{{ url_for('static', path='items/' ~ vacancy.image) }}"
+                             alt="{{ vacancy.title }}"
+                             class="item-image">
+                    </div>
+                    <div class="item-info">
+                        <h3 class="item-title">{{ vacancy.title }}</h3>
+                        <p class="item-price">{{ vacancy.price }}</p>
+                        <button class="details-btn">Забронировать</button>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2024 Casta.shop — ресел вещей</p>
+</footer>
+
+<script src="{{ url_for('static', path='/js/script.js') }}"></script>
+</body>
+</html>
